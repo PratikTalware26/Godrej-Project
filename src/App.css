@@ -1,5 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Geologica&family=Nunito&family=Poppins&display=swap');
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+.main-btn{
+  background: #333333d6 !important;
+    color: white !important;
+}
+span{
+  border-bottom: 1px solid #333;
+}
+@media screen and (max-width:1000px) {
+  .about-desc, .location-desc{
+    flex-wrap: wrap;
+  }  
 }

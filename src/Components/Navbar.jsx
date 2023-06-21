@@ -26,19 +26,20 @@ const Navbar = () => {
               <a className="nav-link active" aria-current="page" href="#">
                 Home
               </a>
-              <a className="nav-link" href="#">
-                Features
+              <a className="nav-link" href="#about">
+                About
               </a>
-              <a className="nav-link" href="#">
-                Pricing
+              <a className="nav-link" href="#location">
+                Location
               </a>
-              <a
-                className="nav-link disabled"
-                href="#"
-                tabIndex="-1"
-                aria-disabled="true"
-              >
-                Disabled
+              <a className="nav-link" href="#price">
+                Best Price
+              </a>
+              <a className="nav-link" href="#amenities">
+                Amenities
+              </a>
+              <a className="nav-link" href="#floorplans">
+                Floor Plans
               </a>
             </div>
           </div>

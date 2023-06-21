@@ -1,0 +1,13 @@
+th, td{
+    border: 1px solid #ccc;
+    padding: 20px !important;
+    vertical-align: middle;
+}
+.price-cont{
+    min-height: 500px;
+    background-image: url("../assets/Phase 1 Wadala Presenter_V5-34.png");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

@@ -1,0 +1,9 @@
+.about-cont{
+    background: whitesmoke;
+}
+.about-img{
+    box-shadow: 2px 2px 1px 3px #ccc;
+}
+.g-20{
+    gap: 20px;
+}

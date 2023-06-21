@@ -1,0 +1,45 @@
+.floorplan-cont{
+    background: whitesmoke;
+    /* padding: 20px; */
+    min-height: 400px;
+}
+.floorplanimg-cont{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.floorplan-header{
+    text-align: center;
+    padding: 20px;
+}
+.floorplan-img-btn-cont{
+    width: 330px;
+    height: 270px;
+    position: relative;
+}
+.floorplanimg-cont img{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.floorplan-img-btn-cont button{
+    position: absolute;
+    width: 100px;
+    padding: 6px;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    border: none;
+    border-radius: 4px;
+}
+.floorplan-img-btn-cont button:hover{
+    cursor: pointer;
+}
+.floorplan-img-btn-cont:hover{
+    box-shadow: 3px 3px 6px 2px grey;
+}
+.blur-img{
+    filter: blur(2px);
+}

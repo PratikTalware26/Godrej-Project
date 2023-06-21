@@ -5,3 +5,7 @@
     left: 0;
     z-index: 999;
 }
+.navbar{
+    background: #fff !important;
+    box-shadow: 2px 2px 4px 1px rgba(0,0,0,0.8);
+}
