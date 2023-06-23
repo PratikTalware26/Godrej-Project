@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useContext } from 'react'
-import "./BestPrice.css"
-import { ThanksContext } from '../App';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
 import mainLogo from "../assets/formlogo_godrej_properties.png";
-import axios from 'axios';
+import "./BottomButtons.css";
+import axios from "axios";
+import { ThanksContext } from "../App";
+import '@fortawesome/fontawesome-free/css/all.css';
 
-const BestPrice = () => {
+const BottomButtons = () => {
     const { setThanksState } = useContext(ThanksContext);
     const navigate = useNavigate();
   //Handeling Form Logic
@@ -15,7 +16,7 @@ const BestPrice = () => {
     email: "",
     phone: "",
     origin: "",
-    area: "enquiry",
+    area: "costsheet",
     ip: "",
     domain: "godrejofficial.in",
     utm_source: "",
@@ -107,66 +108,69 @@ const BestPrice = () => {
   };
   //************** */
 
-  return (
-    <div className='d-flex align-items-center p-4 price-cont' id='bestprice'>
-        <div className='w-100'>
-        <div className="head-cont">
-        <h2 className='text-center p-4 text-light'>Best Pricing</h2>
-      </div>
-      <div className="pricetable-cont">
-        <table className="table table-hover text-center">
-          <thead>
-            <tr>
-              <th>Sr. No.</th>
-              <th>Type</th>
-              <th>Area (Sq.Ft.)</th>
-              <th>Price Range</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>2 BHK</td>
-              <td>828</td>
-              <td>
-                <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>3 BHK</td>
-              <td>1000</td>
-              <td>
-                <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>3 BHK</td>
-              <td>1477</td>
-              <td>
-                <button className='btn main-btn' onClick={()=>setFormpopup(!formPopup)}>
-                  View Price
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      </div>
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+  const [visible, setVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(
+    window.pageYOffset || document.documentElement.scrollTop
+  );
 
-      {formPopup && (
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const isVisible = prevScrollPos > currentScrollPos;
+
+      setVisible(isVisible);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos]);
+
+  if (windowWidth < 600) {
+    return (
+      <>
+        <div className={`bottom-btn-cont ${visible ? "visible" : ""}`}>
+          <div>
+            <a href="tel:+919730003331">
+            <button>
+              <i className="fas fa-phone-alt m-1" aria-hidden="true"></i>Enquiry
+            </button>
+            </a>
+          </div>
+          <div>
+            <button onClick={()=>setFormpopup(!formPopup)}>₹ Cost Sheet</button>
+          </div>
+          <div>
+            <a href="https://wa.link/s5ogma">
+            <button>
+              <i className="fab fa-whatsapp m-1" aria-hidden="true"></i>Whatsapp
+            </button>
+            </a>
+          </div>
+        </div>
+
+        {formPopup && (
           <div className={`popupContainer ${isExiting ? "exit" : ""}`} onClick={closePopup}>
             <div className={`popup ${transitionClass}`} onClick={(e)=>e.stopPropagation()}>
               <div className="popup-img-cont">
                 <img src={mainLogo} alt="" />
               </div>
               <div className="popup-inp-cont">
-                <h2>Register to view price</h2>
+                <h2>Register for costsheet</h2>
                 <form onSubmit={handleSubmit}>
                   <input
                     type="text"
@@ -197,7 +201,7 @@ const BestPrice = () => {
                   />
                   <div className="popup-submit-btn-cont">
                     <button type="submit" className="submit-btn">
-                      View Price
+                      View Costsheet
                     </button>
                   </div>
                 </form>
@@ -208,8 +212,11 @@ const BestPrice = () => {
             </div>
           </div>
         )}
-    </div>
-  )
-}
+      </>
+    );
+  } else {
+    return null;
+  }
+};
 
-export default BestPrice
+export default BottomButtons;

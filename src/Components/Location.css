@@ -1,0 +1,11 @@
+@media screen and (max-width:600px) {
+   .location-img-cont{
+    height: 400px;
+   }
+   .location-desc{
+    text-align: center;
+   }
+   .price-cont{
+    padding: 10px !important;
+   }     
+}

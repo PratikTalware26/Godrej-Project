@@ -1,10 +1,11 @@
 import React from 'react'
 import "./About.css"
-import aboutImg from "../assets/Phase 1 Wadala Presenter_V5-14.png"
+// import aboutImg from "../assets/Phase 1 Wadala Presenter_V5-14.png"
+import aboutImg from "../assets/aboutImg.png"
 
 const About = () => {
   return (
-    <div className='about-cont p-4'>
+    <div className='about-cont p-4' id="about">
         <div>
             <h2 className='text-center p-2'><span>About Us</span></h2>
         </div>
@@ -12,7 +13,7 @@ const About = () => {
         <div className='w-100 about-img-cont'>
             <img src={aboutImg} alt="aboutImg" className='w-100 about-img'/>
         </div>
-        <div className='w-100'>
+        <div className='w-100 about-desc'>
         <p>
         Welcome to Godrej Horizon Crest, an exquisite residential project located in the bustling neighborhood of Wadala, Mumbai. Nestled amidst the vibrant cityscape, Godrej Horizon Crest stands tall as a testament to luxury, comfort, and convenience.
         </p>

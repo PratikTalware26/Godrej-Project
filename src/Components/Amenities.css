@@ -3,6 +3,10 @@
 }
 .amenities-slides-cont{
     height:350px;
+    padding: 10px;
+}
+.amenities-slides-cont img{
+    box-shadow: 2px 2px 2px 2px #ccc;
 }
 .enlarged-image-overlay {
     position: fixed;
@@ -37,9 +41,15 @@
     cursor: pointer;
     color: #fff;
     font-size: 24px;
+    z-index: 99;
   }
   
   .close-button:hover {
     color: #ccc;
   }
-  
+  @media screen and (max-width:1000px) {
+    .enlarged-image-container{
+        max-height: 90% !important;
+        height: auto !important;
+    }
+  }

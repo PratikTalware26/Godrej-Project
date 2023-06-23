@@ -1,7 +1,7 @@
 .floorplan-cont{
     background: whitesmoke;
     /* padding: 20px; */
-    min-height: 400px;
+    min-height: 500px;
 }
 .floorplanimg-cont{
     display: flex;

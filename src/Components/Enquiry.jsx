@@ -2,14 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import mainImg from "../assets/Phase 1 Wadala Presenter_V5-33.png";
 import "./Enquiry.css";
 import mainLogo from "../assets/formlogo_godrej_properties.png";
-// import Disclaimer from "./Disclaimer";
-// import { useLocation, useNavigate } from "react-router-dom";
-// import axios from "axios";
-// import { ThanksContext } from "../App";
+import Disclaimer from "./Disclaimer";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { ThanksContext } from "../App";
 
 const Enquiry = () => {
-    // const { setThanksState } = useContext(ThanksContext);
-    // const navigate = useNavigate();
+    const { setThanksState } = useContext(ThanksContext);
+    const navigate = useNavigate();
     //Handeling Form Logic
     //data
     const [enquiryData, setEnquiryData] = useState({
@@ -19,7 +19,7 @@ const Enquiry = () => {
       origin: "",
       area: "enquiry",
       ip: "",
-      domain: "kohinoordeveloper.in",
+      domain: "godrejofficial.in",
       utm_source: "",
       utm_medium: "",
       utm_campaign: "",
@@ -28,21 +28,21 @@ const Enquiry = () => {
     });
   
     //utm data
-    // const location = useLocation();
+    const location = useLocation();
   
-    // useEffect(() => {
-    //   const searchParams= new URLSearchParams(location.search)
-    //   if(searchParams.get("utm_source")){
-    //     setEnquiryData((prevData)=>({
-    //       ...prevData,
-    //       utm_source:searchParams.get("utm_source"),
-    //       utm_medium: searchParams.get("utm_medium"),
-    //       utm_campaign: searchParams.get("utm_campaign"),
-    //       utm_term: searchParams.get("utm_term"),
-    //       utm_content: searchParams.get("utm_content"),
-    //     }))
-    //   }
-    // }, [location]);
+    useEffect(() => {
+      const searchParams= new URLSearchParams(location.search)
+      if(searchParams.get("utm_source")){
+        setEnquiryData((prevData)=>({
+          ...prevData,
+          utm_source:searchParams.get("utm_source"),
+          utm_medium: searchParams.get("utm_medium"),
+          utm_campaign: searchParams.get("utm_campaign"),
+          utm_term: searchParams.get("utm_term"),
+          utm_content: searchParams.get("utm_content"),
+        }))
+      }
+    }, [location]);
   
     const handleChange = (e) => {
       const name = e.target.name;
@@ -54,26 +54,26 @@ const Enquiry = () => {
       e.preventDefault();
       // console.log(queryParam.get("utm_source"));
       try {
-        // const fetchData = async () => {
-        //   const jsonData = JSON.stringify(enquiryData);
-        //   await axios
-        //     .post(
-        //       "https://www.crm.brickfolio.in/api/leads/add_raw_lead",
-        //       jsonData,
-        //       {
-        //         headers: {
-        //           "Content-Type": "application/json; charset=utf-8",
-        //           "Access-Control-Allow-Origin": "*",
-        //         },
-        //       }
-        //     )
-        //     .then((res) => {
-        //       setThanksState(true);
-        //       navigate("/thanks");
-        //     });
-        // };
-        // fetchData();
-        console.log(enquiryData)
+        const fetchData = async () => {
+          const jsonData = JSON.stringify(enquiryData);
+          await axios
+            .post(
+              "https://www.crm.brickfolio.in/api/leads/add_raw_lead",
+              jsonData,
+              {
+                headers: {
+                  "Content-Type": "application/json; charset=utf-8",
+                  "Access-Control-Allow-Origin": "*",
+                },
+              }
+            )
+            .then((res) => {
+              setThanksState(true);
+              navigate("/thanks");
+            });
+        };
+        fetchData();
+        // console.log(enquiryData)
       } catch (error) {
         console.log(error.message);
       }
@@ -134,7 +134,7 @@ const Enquiry = () => {
             </div>
           </div>
         </div>
-        {/* <Disclaimer /> */}
+        <Disclaimer />
       </>
     );
   };
