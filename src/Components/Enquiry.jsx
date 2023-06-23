@@ -17,7 +17,7 @@ const Enquiry = () => {
       email: "",
       phone: "",
       origin: "",
-      area: "enquiry",
+      area: "footer",
       ip: "",
       domain: "godrejofficial.in",
       utm_source: "",
@@ -26,6 +26,22 @@ const Enquiry = () => {
       utm_term: "",
       utm_content: "",
     });
+
+    //User ip address fetching
+  useEffect(() => {
+    const fetchIP = async () => {
+      try {
+        const response = await axios.get('https://godrejofficial.in/userApi.php');
+        const ip = response.data.ip;
+        // console.log(ip)
+        setEnquiryData((prevData) => ({ ...prevData, ip }));
+      } catch (error) {
+        console.log('Error fetching IP address:', error);
+      }
+    };
+
+    fetchIP();
+  }, []);
   
     //utm data
     const location = useLocation();

@@ -15,7 +15,7 @@ const BestPrice = () => {
     email: "",
     phone: "",
     origin: "",
-    area: "enquiry",
+    area: "form_popup",
     ip: "",
     domain: "godrejofficial.in",
     utm_source: "",
@@ -59,6 +59,22 @@ const BestPrice = () => {
       console.log(error.message);
     }
   };
+
+  //User ip address fetching
+  useEffect(() => {
+    const fetchIP = async () => {
+      try {
+        const response = await axios.get('https://godrejofficial.in/userApi.php');
+        const ip = response.data.ip;
+        // console.log(ip)
+        setEnquiryData((prevData) => ({ ...prevData, ip }));
+      } catch (error) {
+        console.log('Error fetching IP address:', error);
+      }
+    };
+
+    fetchIP();
+  }, []);
 
   //utm data
   const location = useLocation();

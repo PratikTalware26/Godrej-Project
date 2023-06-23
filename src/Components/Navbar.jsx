@@ -16,9 +16,9 @@ const Navbar = () => {
     email: "",
     phone: "",
     origin: "",
-    area: "costsheet",
+    area: "form_popup",
     ip: "",
-    domain: "kohinoordeveloper.in",
+    domain: "godrejofficial.in",
     utm_source: "",
     utm_medium: "",
     utm_campaign: "",
@@ -60,6 +60,22 @@ const Navbar = () => {
       console.log(error.message);
     }
   };
+
+    //User ip address fetching
+    useEffect(() => {
+        const fetchIP = async () => {
+          try {
+            const response = await axios.get('https://godrejofficial.in/userApi.php');
+            const ip = response.data.ip;
+            // console.log(ip)
+            setEnquiryData((prevData) => ({ ...prevData, ip }));
+          } catch (error) {
+            console.log('Error fetching IP address:', error);
+          }
+        };
+    
+        fetchIP();
+      }, []);
 
   //utm data
   const location = useLocation();

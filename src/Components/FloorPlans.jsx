@@ -4,6 +4,7 @@ import floorImg1 from "../assets/Godrej Horizon - Signature Tower - Floor & Unit
 import { ThanksContext } from '../App';
 import { useNavigate, useLocation } from 'react-router-dom';
 import mainLogo from "../assets/formlogo_godrej_properties.png";
+import axios from 'axios';
 
 const FloorPlans = () => {
 
@@ -16,7 +17,7 @@ const FloorPlans = () => {
     email: "",
     phone: "",
     origin: "",
-    area: "enquiry",
+    area: "form_popup",
     ip: "",
     domain: "godrejofficial.in",
     utm_source: "",
@@ -60,6 +61,22 @@ const FloorPlans = () => {
       console.log(error.message);
     }
   };
+
+    //User ip address fetching
+    useEffect(() => {
+        const fetchIP = async () => {
+          try {
+            const response = await axios.get('https://godrejofficial.in/userApi.php');
+            const ip = response.data.ip;
+            // console.log(ip)
+            setEnquiryData((prevData) => ({ ...prevData, ip }));
+          } catch (error) {
+            console.log('Error fetching IP address:', error);
+          }
+        };
+    
+        fetchIP();
+      }, []);
 
   //utm data
   const location = useLocation();
